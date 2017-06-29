@@ -1,35 +1,23 @@
 #!/usr/bin/env python
 
 import nmap
+import operator
 import json
+from natsort import natsorted
 
-host_result = []
+nm = nmap.PortScanner()
+nm.scan(hosts='10.10.101.0/24', arguments='-n -v -sn')
+hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 
-host_result.append(['kocsog'])
+for host, status in hosts_list:
+    print('{0}:{1}'.format(host, status))
 
-nm = nmap.PortScannerAsync()
-def callback_result(host, scan_result):
-#    print (host, scan_result)
-#    print (host, scan_result['nmap']['scanstats']['uphosts'])
-    
-    isUP = scan_result['nmap']['scanstats']['uphosts']
-#    print (isUP)
-    if isUP == '1':
-        print (host, " UP")
-        
-        host_result.append([host,'UP'])
-    else:
-        print (host, " DOWN")        
-        host_result.append([host,'DOWN'])
+sorted_list = natsorted(hosts_list, key=lambda host: host[0])
 
-    
-    
-print "processing started"
+with open("netscan.json", "w") as json_file:
+    json.dump(sorted_list, json_file)
 
-nm.scan('10.10.101.0/30', arguments="-sP", callback=callback_result)
-while nm.still_scanning():
-    #print("Waiting >>>")
-    nm.wait(1)
-print "processing ended"
+print "sorted"
 
-for p in host_result: print p
+for host, status in sorted_list:
+    print('{0}:{1}'.format(host, status))
