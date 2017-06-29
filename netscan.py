@@ -3,7 +3,7 @@
 import nmap
 import json
 
-result = []
+global result = []
 
 nm = nmap.PortScannerAsync()
 def callback_result(host, scan_result):
@@ -14,11 +14,10 @@ def callback_result(host, scan_result):
 #    print (isUP)
     if isUP == '1':
         print (host, " UP")
-        global result
+        
         result.append([host,'UP'])
     else:
-        print (host, " DOWN")
-        global result
+        print (host, " DOWN")        
         result.append([host,'DOWN'])
     
 
