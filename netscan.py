@@ -20,7 +20,7 @@ def callback_result(host, scan_result):
         print (host, " DOWN")        
         result.append([host,'DOWN'])
     
-
+print "processing started"
 
 nm.scan('10.10.101.0/30', arguments="-sP", callback=callback_result)
 while nm.still_scanning():
