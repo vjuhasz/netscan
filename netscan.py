@@ -3,12 +3,13 @@
 import nmap
 import json
 
+result = []
 
 nm = nmap.PortScannerAsync()
 def callback_result(host, scan_result):
 #    print (host, scan_result)
 #    print (host, scan_result['nmap']['scanstats']['uphosts'])
-    result = []
+    
     isUP = scan_result['nmap']['scanstats']['uphosts']
 #    print (isUP)
     if isUP == '1':
