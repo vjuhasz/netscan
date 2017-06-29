@@ -3,7 +3,8 @@
 import nmap
 import json
 
-global result = []
+global result
+result = []
 
 nm = nmap.PortScannerAsync()
 def callback_result(host, scan_result):
