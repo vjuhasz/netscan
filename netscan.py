@@ -5,6 +5,8 @@ import json
 
 host_result = []
 
+host_result.append(['kocsog'])
+
 nm = nmap.PortScannerAsync()
 def callback_result(host, scan_result):
 #    print (host, scan_result)
