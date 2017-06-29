@@ -14,17 +14,20 @@ def callback_result(host, scan_result):
 #    print (isUP)
     if isUP == '1':
         print (host, " UP")
+        global result
         result.append([host,'UP'])
     else:
         print (host, " DOWN")
+        global result
         result.append([host,'DOWN'])
     
 
 
-nm.scan('10.10.101.0/28', arguments="-sP", callback=callback_result)
+nm.scan('10.10.101.0/29', arguments="-sP", callback=callback_result)
 while nm.still_scanning():
     #print("Waiting >>>")
     nm.wait(1)
+print "processing ended"
 
 for i in range(len(result)):
         print result[i][0]
