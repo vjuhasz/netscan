@@ -19,6 +19,10 @@ def callback_result(host, scan_result):
     else:
         print (host, " DOWN")        
         result.append([host,'DOWN'])
+        
+    for i in range(len(result)):
+        print result[i][0]
+        print result[i][1]
     
 print "processing started"
 
