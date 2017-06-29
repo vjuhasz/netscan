@@ -3,26 +3,24 @@
 import nmap
 import json
 
-result = []
+host_result = []
 
 nm = nmap.PortScannerAsync()
 def callback_result(host, scan_result):
 #    print (host, scan_result)
 #    print (host, scan_result['nmap']['scanstats']['uphosts'])
-    global result
+    
     isUP = scan_result['nmap']['scanstats']['uphosts']
 #    print (isUP)
     if isUP == '1':
         print (host, " UP")
         
-        result.append([host,'UP'])
+        host_result.append([host,'UP'])
     else:
         print (host, " DOWN")        
-        result.append([host,'DOWN'])
-        
-    for i in range(len(result)):
-        print result[i][0]
-        print result[i][1]
+        host_result.append([host,'DOWN'])
+
+    
     
 print "processing started"
 
@@ -32,6 +30,4 @@ while nm.still_scanning():
     nm.wait(1)
 print "processing ended"
 
-for i in range(len(result)):
-        print result[i][0]
-        print result[i][1]
+for p in host_result: print p
