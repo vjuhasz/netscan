@@ -8,7 +8,7 @@ host_result = []
 host_result.append(['kocsog'])
 
 nm = nmap.PortScannerAsync()
-def callback_result(host, scan_result):
+def callback_result(host, scan_result, host_result):
 #    print (host, scan_result)
 #    print (host, scan_result['nmap']['scanstats']['uphosts'])
     
