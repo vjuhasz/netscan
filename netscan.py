@@ -16,4 +16,4 @@ def callback_result(host, scan_result):
 nm.scan('10.10.101.0/24', arguments="-sP", callback=callback_result)
 while nm.still_scanning():
     #print("Waiting >>>")
-    #nm.wait(2)
+    nm.wait(1)
