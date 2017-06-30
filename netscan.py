@@ -5,8 +5,10 @@ import operator
 import json
 from natsort import natsorted
 
+subnet = '10.10.101.0/24'
+
 nm = nmap.PortScanner()
-nm.scan(hosts='10.10.101.0/24', arguments='-n -v -sn')
+nm.scan(hosts=subnet, arguments='-n -v -sn')
 hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 
 for host, status in hosts_list:
