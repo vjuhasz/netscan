@@ -7,7 +7,7 @@ $(document).ready(function () {
  
  $.ajax({
  type: "GET",
- url: "../netscan.json",
+ url: "10.10.101.98/netscan/netscan.json",
  success: function(result)
  {
  console.log(result);
